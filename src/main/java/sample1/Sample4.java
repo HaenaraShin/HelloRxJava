@@ -153,6 +153,15 @@ public class Sample4 {
         );
     }
 
+    public void run7() {
+        // Single 이래서 안된댄다.. 대체 뭐지
+//        Observable<List<Integer>> all = Observable
+//                .range(10, 20)
+//                .collect(ArrayList::new, List::add);
+//        all.subscribe(System.out::println);
+
+    }
+
     private List<Integer> createList(int start, int size) {
         ArrayList<Integer> list = new ArrayList<>();
         for (int i = 0; i < size; i++) {
