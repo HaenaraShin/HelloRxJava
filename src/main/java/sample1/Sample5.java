@@ -77,4 +77,11 @@ public class Sample5 {
         public int value;
     }
 
+    public void run5() {
+        Observable<Integer> numbers = Observable.range(1, 5);
+        numbers.all(x -> x != 4).subscribe(System.out::println); // all() 모두가 조건 성립?
+        numbers.any(x -> x != 4).subscribe(System.out::println); // any() 하나라도 조건 성립? ==> exist 에서 변경됨.
+        numbers.contains(4).subscribe(System.out::println); // contains() 하나라도 동일값?
+    }
+
 }
