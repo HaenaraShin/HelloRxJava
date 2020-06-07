@@ -1,10 +1,12 @@
 //import sample1.Sample2;
 import sample1.Sample3;
 import sample1.Sample4;
+import sample1.Sample5;
+import sampleKotlin.SampleKotlin1;
 
 public class HelloRx {
     public static void main(String[] args) {
-        new Sample4().run7();
+        new Sample5().run2();
     }
 }
 
