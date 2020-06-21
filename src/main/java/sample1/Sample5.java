@@ -84,4 +84,19 @@ public class Sample5 {
         numbers.contains(4).subscribe(System.out::println); // contains() 하나라도 동일값?
     }
 
+    public void run6() {
+        Observable.combineLatest(
+                Observable.just("1"),
+                Observable.just("1"),
+                (s, f) -> f + ":" + s
+        );
+
+        Observable.combineLatest(
+                Observable.just("1"),
+                Observable.just("1"),
+                Observable.just("1"),
+                (s, f, z) -> f + ":" + s + ":" + z
+        );
+    }
+
 }
