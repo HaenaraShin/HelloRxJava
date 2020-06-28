@@ -6,10 +6,11 @@ import sample1.Sample5;
 import sampleKotlin.SampleKotlin1;
 import sampleKotlin.SampleKotlin3;
 import sampleKotlin.SampleKotlin4;
+import sampleKotlin.SampleKotlin5;
 
 public class HelloRx {
     public static void main(String[] args) {
-        new SampleKotlin4().run9();
+        new SampleKotlin5().run5();
     }
 }
 
