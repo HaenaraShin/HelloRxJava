@@ -4,6 +4,7 @@ import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Scheduler
 import io.reactivex.rxjava3.functions.Function3
 import io.reactivex.rxjava3.schedulers.Schedulers
+import java.util.*
 import java.util.concurrent.Executor
 import java.util.concurrent.TimeUnit
 
@@ -170,5 +171,38 @@ class SampleKotlin5 {
         println("${String.format("%-4d", System.currentTimeMillis() - offset)}|" +
                 " ${Thread.currentThread().name} |" +
                 " $message")
+    }
+
+    fun run6() {
+        log("Starting")
+        val o = Observable.create<String> {
+            log("Subscribed")
+            it.onNext("A")
+            it.onNext("B")
+            it.onNext("C")
+            it.onNext("D")
+            it.onComplete()
+        }
+        log("Created")
+
+        o
+            .subscribeOn(Schedulers.newThread())
+            .flatMap { record -> store(record).subscribeOn(Schedulers.io()) }
+            .observeOn(Schedulers.trampoline())
+            .subscribe {
+                log("Got : $it")
+            }
+        log("Finish")
+
+        Thread.sleep(3000)
+    }
+
+    fun store(s : String) : Observable<UUID> {
+        return Observable.create{
+            log("Storing $s")
+            // 힘든 일
+            it.onNext(UUID.randomUUID())
+            it.onComplete()
+        }
     }
 }

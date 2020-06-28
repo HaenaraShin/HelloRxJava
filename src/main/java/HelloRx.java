@@ -10,7 +10,7 @@ import sampleKotlin.SampleKotlin5;
 
 public class HelloRx {
     public static void main(String[] args) {
-        new SampleKotlin5().run5();
+        new SampleKotlin5().run6();
     }
 }
 
