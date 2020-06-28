@@ -5,6 +5,7 @@ import io.reactivex.rxjava3.core.ObservableEmitter
 import io.reactivex.rxjava3.core.ObservableOnSubscribe
 import io.reactivex.rxjava3.core.Observer
 import io.reactivex.rxjava3.disposables.Disposable
+import java.lang.RuntimeException
 
 class SampleKotlin1 {
     fun run1() {
@@ -32,5 +33,29 @@ class SampleKotlin1 {
         o.onNext("RxKotlin")
         o.onNext("Observer with manually.")
         o.onComplete()
+    }
+
+    fun run4() {
+        val o1 = Observable.create<String> {
+            it.onNext("hello")
+            it.onNext("Rx")
+            it.onComplete()
+        }
+
+        val o2 = Observable.create<String> {
+            it.onNext("hello")
+            it.onNext("Error")
+            it.onError(RuntimeException("Runtime Exception"))
+        }
+
+        o1.subscribe(
+            {it -> println(it)},
+            {e -> println(e.localizedMessage)},
+            { println("complete")})
+
+        o2.subscribe(
+            {it -> println(it)},
+            {e -> println(e.message)},
+            { println("complete")})
     }
 }
