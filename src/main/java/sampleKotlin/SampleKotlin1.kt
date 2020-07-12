@@ -58,4 +58,14 @@ class SampleKotlin1 {
             {e -> println(e.message)},
             { println("complete")})
     }
+
+    fun run5() {
+        // fromCallabe 사용하는 방법
+        Observable.fromCallable { 1 / 0 }
+            .subscribe(
+                { println(it) },
+                { e -> println(e.message) }
+            )
+
+    }
 }
